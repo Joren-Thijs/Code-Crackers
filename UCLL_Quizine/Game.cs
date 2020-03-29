@@ -6,6 +6,12 @@ namespace UCLL_Quizine
 {
     public class Game
     {
+        public Game(string gameCode, int maxNumberOfPlayers)
+        {
+            this.GameCode = gameCode;
+            this.MaxNumberOfPlayers = maxNumberOfPlayers;
+        }
+
         public string GameCode { get; private set; }
         public int MaxNumberOfPlayers { get; private set; }
         public ObservableCollection<Player> Players { get; private set; }
