@@ -6,6 +6,24 @@ namespace UCLL_Quizine.Test
     public class PlayerTests
     {
         [Test]
+        public void CreatePlayerTest()
+        {
+            var player = new Player("John");
+            Assert.IsNotNull(player);
+        }
+
+        [Test]
+        public void AssertPlayerNameCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(PlayerNameCannotBeNullTest);
+        }
+
+        private void PlayerNameCannotBeNullTest()
+        {
+            var player = new Player(null);
+        }
+
+        [Test]
         public void AddPlayerTest()
         {
             var gameCode = "abcd";

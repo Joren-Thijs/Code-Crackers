@@ -1,10 +1,13 @@
-﻿namespace UCLL_Quizine
+﻿using System;
+
+namespace UCLL_Quizine
 {
     public class Player
     {
         public Player(string playerName)
         {
-            this.Name = playerName;
+            this.Name = playerName ?? 
+                throw new ArgumentNullException("The playerName cannot be null.");
             this.Score = 0;
         }
 
