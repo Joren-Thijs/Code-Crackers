@@ -4,18 +4,15 @@ namespace UCLL_Quizine.Test
 {
     public class PlayerTests
     {
-        private Game game;
-
-        [SetUp]
-        public void Setup()
-        {
-            
-        }
-
         [Test]
-        public void Test1()
+        public void AddPlayerTest()
         {
-            Assert.Pass();
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result = game.AddPlayer(gameCode, "John");
+            Assert.IsTrue(result);
         }
     }
 }

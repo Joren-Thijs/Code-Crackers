@@ -10,6 +10,9 @@ namespace UCLL_Quizine
         {
             this.GameCode = gameCode;
             this.MaxNumberOfPlayers = maxNumberOfPlayers;
+            this.Players = new ObservableCollection<Player>();
+            this.Questions = new ObservableCollection<Question>();
+            this.Started = false;
         }
 
         public string GameCode { get; private set; }
