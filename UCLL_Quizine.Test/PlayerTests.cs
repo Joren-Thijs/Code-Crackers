@@ -13,6 +13,13 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void PlayerScoreIsZeroTest()
+        {
+            var player = new Player("John");
+            Assert.Equals(player.Score, 0);
+        }
+
+        [Test]
         public void AssertPlayerNameCannotBeNullTest()
         {
             Assert.Throws<ArgumentNullException>(PlayerNameCannotBeNullTest);
