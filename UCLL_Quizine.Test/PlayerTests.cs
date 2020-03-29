@@ -92,12 +92,12 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
-        public void AssertAddPlayerWithWrongCode()
+        public void AssertAddPlayerWithWrongCodeTest()
         {
-            Assert.Throws<ArgumentException>(AddPlayerWithWrongCode);
+            Assert.Throws<ArgumentException>(AddPlayerWithWrongCodeTest);
         }
 
-        private void AddPlayerWithWrongCode()
+        private void AddPlayerWithWrongCodeTest()
         {
             var gameCode = "abcd";
             var incorrectGamecode = "wxyz";
@@ -179,6 +179,23 @@ namespace UCLL_Quizine.Test
                 game.AddPlayer(gameCode, "Sarah") &&
                 game.AddPlayer(gameCode, "Linda") &&
                 game.AddPlayer(gameCode, "Julia");
+        }
+
+        [Test]
+        public void AssertAddPlayerWithExistingNameTest()
+        {
+            Assert.Throws<ArgumentException>(AddPlayerWithExistingNameTest);
+        }
+
+        private void AddPlayerWithExistingNameTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result =
+                game.AddPlayer(gameCode, "John") &&
+                game.AddPlayer(gameCode, "John");
         }
     }
 }
