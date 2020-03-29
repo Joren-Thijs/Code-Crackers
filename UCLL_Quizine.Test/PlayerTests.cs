@@ -16,7 +16,15 @@ namespace UCLL_Quizine.Test
         public void PlayerScoreIsZeroTest()
         {
             var player = new Player("John");
-            Assert.Equals(player.Score, 0);
+            Assert.AreEqual(player.Score, 0);
+        }
+
+        [Test]
+        public void PlayerNameIsCorrectTest()
+        {
+            var playerName = "John";
+            var player = new Player(playerName);
+            Assert.AreEqual(player.Name, playerName);
         }
 
         [Test]
