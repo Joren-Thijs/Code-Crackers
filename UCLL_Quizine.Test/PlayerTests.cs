@@ -106,5 +106,79 @@ namespace UCLL_Quizine.Test
 
             var result = game.AddPlayer(incorrectGamecode, "John");
         }
+
+        [Test]
+        public void AssertAddPlayerOverMaxNumberOneTest()
+        {
+            Assert.Throws<ApplicationException>(AddPlayerOverMaxNumberOneTest);
+        }
+
+        private void AddPlayerOverMaxNumberOneTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 1;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result =
+                game.AddPlayer(gameCode, "John") &&
+                game.AddPlayer(gameCode, "Harold");
+        }
+
+        [Test]
+        public void AssertAddPlayerOverMaxNumberTwoTest()
+        {
+            Assert.Throws<ApplicationException>(AddPlayerOverMaxNumberTwoTest);
+        }
+
+        private void AddPlayerOverMaxNumberTwoTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 2;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result =
+                game.AddPlayer(gameCode, "John") &&
+                game.AddPlayer(gameCode, "Harold") &&
+                game.AddPlayer(gameCode, "Sarah");
+        }
+
+        [Test]
+        public void AssertAddPlayerOverMaxNumberThreeTest()
+        {
+            Assert.Throws<ApplicationException>(AddPlayerOverMaxNumberThreeTest);
+        }
+
+        private void AddPlayerOverMaxNumberThreeTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 3;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result =
+                game.AddPlayer(gameCode, "John") &&
+                game.AddPlayer(gameCode, "Harold") &&
+                game.AddPlayer(gameCode, "Sarah") &&
+                game.AddPlayer(gameCode, "Linda");
+        }
+
+        [Test]
+        public void AssertAddPlayerOverMaxNumberFourTest()
+        {
+            Assert.Throws<ApplicationException>(AddPlayerOverMaxNumberFourTest);
+        }
+
+        private void AddPlayerOverMaxNumberFourTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result =
+                game.AddPlayer(gameCode, "John") &&
+                game.AddPlayer(gameCode, "Harold") &&
+                game.AddPlayer(gameCode, "Sarah") &&
+                game.AddPlayer(gameCode, "Linda") &&
+                game.AddPlayer(gameCode, "Julia");
+        }
     }
 }
