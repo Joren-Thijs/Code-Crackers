@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace UCLL_Quizine.Test
 {
@@ -55,6 +56,22 @@ namespace UCLL_Quizine.Test
                 game.AddPlayer(gameCode, "Sarah") &&
                 game.AddPlayer(gameCode, "Linda");
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void AssertAddPlayerWithWrongCode()
+        {
+            Assert.Throws<ArgumentException>(AddPlayerWithWrongCode);
+        }
+
+        private void AddPlayerWithWrongCode()
+        {
+            var gameCode = "abcd";
+            var incorrectGamecode = "wxyz";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            var result = game.AddPlayer(incorrectGamecode, "John");
         }
     }
 }
