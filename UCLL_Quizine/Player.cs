@@ -6,8 +6,12 @@ namespace UCLL_Quizine
     {
         public Player(string playerName)
         {
-            this.Name = playerName ?? 
-                throw new ArgumentNullException("The playerName cannot be null.");
+            if (String.IsNullOrWhiteSpace(playerName))
+            {
+                throw new ArgumentNullException("The playerName cannot be null or empty.");
+            }
+
+            this.Name = playerName;
             this.Score = 0;
         }
 

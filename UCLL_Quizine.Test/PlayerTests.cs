@@ -28,6 +28,14 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void PlayerNameIsCorrectTwoTest()
+        {
+            var playerName = "Harold";
+            var player = new Player(playerName);
+            Assert.AreEqual(player.Name, playerName);
+        }
+
+        [Test]
         public void AssertPlayerNameCannotBeNullTest()
         {
             Assert.Throws<ArgumentNullException>(PlayerNameCannotBeNullTest);
@@ -36,6 +44,28 @@ namespace UCLL_Quizine.Test
         private void PlayerNameCannotBeNullTest()
         {
             var player = new Player(null);
+        }
+
+        [Test]
+        public void AssertPlayerNameCannotBeEmptyTest()
+        {
+            Assert.Throws<ArgumentNullException>(PlayerNameCannotBeEmptyTest);
+        }
+
+        private void PlayerNameCannotBeEmptyTest()
+        {
+            var player = new Player("");
+        }
+
+        [Test]
+        public void AssertPlayerNameCannotBeWhiteSpaceTest()
+        {
+            Assert.Throws<ArgumentNullException>(PlayerNameCannotBeWhiteSpaceTest);
+        }
+
+        private void PlayerNameCannotBeWhiteSpaceTest()
+        {
+            var player = new Player("   ");
         }
 
         [Test]
