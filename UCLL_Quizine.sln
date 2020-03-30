@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCLL_Quizine", "UCLL_Quizine\UCLL_Quizine.csproj", "{56D791F3-B211-43BF-9F40-FE9A0C122BE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCLL_Quizine.Test", "UCLL_Quizine.Test\UCLL_Quizine.Test.csproj", "{55D5662E-34A2-4B73-A138-40E28DEEBFEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{56D791F3-B211-43BF-9F40-FE9A0C122BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56D791F3-B211-43BF-9F40-FE9A0C122BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56D791F3-B211-43BF-9F40-FE9A0C122BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55D5662E-34A2-4B73-A138-40E28DEEBFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55D5662E-34A2-4B73-A138-40E28DEEBFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D5662E-34A2-4B73-A138-40E28DEEBFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55D5662E-34A2-4B73-A138-40E28DEEBFEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
