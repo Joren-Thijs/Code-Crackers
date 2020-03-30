@@ -135,5 +135,62 @@ namespace UCLL_Quizine.Test
             };
             var question = new Question(questionText, answers, correctAnswerIds);
         }
+
+        [Test]
+        public void CreateQuestionFilledWithMultipleGoodAnswersTwoTest()
+        {
+            var questionText = "Question";
+            var answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+                new Answer('B', "Answer 2"),
+                new Answer('C', "Answer 3"),
+                new Answer('D', "Answer 4")
+            };
+            var correctAnswerIds = new List<char>()
+            {
+                'A','B'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+            Assert.IsNotNull(question);
+        }
+
+        [Test]
+        public void CreateQuestionFilledWithMultipleGoodAnswersThreeTest()
+        {
+            var questionText = "Question";
+            var answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+                new Answer('B', "Answer 2"),
+                new Answer('C', "Answer 3"),
+                new Answer('D', "Answer 4")
+            };
+            var correctAnswerIds = new List<char>()
+            {
+                'A','B','C'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+            Assert.IsNotNull(question);
+        }
+
+        [Test]
+        public void CreateQuestionFilledWithMultipleGoodAnswersFourTest()
+        {
+            var questionText = "Question";
+            var answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+                new Answer('B', "Answer 2"),
+                new Answer('C', "Answer 3"),
+                new Answer('D', "Answer 4")
+            };
+            var correctAnswerIds = new List<char>()
+            {
+                'A','B','C','D'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+            Assert.IsNotNull(question);
+        }
     }
 }
