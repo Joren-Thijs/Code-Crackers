@@ -192,5 +192,26 @@ namespace UCLL_Quizine.Test
             var question = new Question(questionText, answers, correctAnswerIds);
             Assert.IsNotNull(question);
         }
+
+        [Test]
+
+        public void AssertQuestionMustHaveTwoPosibleAnswersTest()
+        {
+            Assert.Throws<ArgumentException>(QuestionMustHaveTwoPosibleAnswersTest);
+        }
+
+        private void QuestionMustHaveTwoPosibleAnswersTest()
+        {
+            var questionText = "Question";
+            var answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+            };
+            var correctAnswerIds = new List<char>()
+            {
+                'A'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+        }
     }
 }

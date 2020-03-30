@@ -17,6 +17,12 @@ namespace UCLL_Quizine
                 throw new ArgumentException("The given question has no correct answer.");
             }
 
+            // Varify question has at least two possible answers
+            if (answers.Count < 2)
+            {
+                throw new ArgumentException("The given question must have at least two possible answers.");
+            }
+
             QuestionText = questionText;
             Answers = answers;
             CorrectAnswerIds = correctAnswerIds;
