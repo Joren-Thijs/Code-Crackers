@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UCLL_Quizine
 {
@@ -8,6 +10,13 @@ namespace UCLL_Quizine
 
         public Question(string questionText, List<Answer> answers, List<char> correctAnswerIds)
         {
+            // Varify question has a correct answer.
+            var matchingAnswers = CorrectAnswerIds.Where(x => answers.Any(y => y.AnswerId == x)).ToList();
+            if (matchingAnswers == null)
+            {
+                throw new ArgumentException("The given question has no correct answer.");
+            }
+
             QuestionText = questionText;
             Answers = answers;
             CorrectAnswerIds = correctAnswerIds;
