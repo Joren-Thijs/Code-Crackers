@@ -227,5 +227,65 @@ namespace UCLL_Quizine.Test
                 game.AddPlayer(gameCode, "John") &&
                 game.AddPlayer(gameCode, "John");
         }
+
+        [Test]
+        public void RemovePlayerTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            game.AddPlayer(gameCode, "John");
+            var result = game.RemovePlayer("John");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void RemovePlayersTwoTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            game.AddPlayer(gameCode, "John");
+            game.AddPlayer(gameCode, "Harold");
+            var result = game.RemovePlayer("John") &&
+                game.RemovePlayer("Harold");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void RemovePlayersThreeTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            game.AddPlayer(gameCode, "John");
+            game.AddPlayer(gameCode, "Harold");
+            game.AddPlayer(gameCode, "Sarah");
+            var result = game.RemovePlayer("John") &&
+                game.RemovePlayer("Harold") &&
+                game.RemovePlayer("Sarah");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void RemovePlayersFourTest()
+        {
+            var gameCode = "abcd";
+            var maxNumberOfPlayers = 4;
+            var game = new Game(gameCode, maxNumberOfPlayers);
+
+            game.AddPlayer(gameCode, "John");
+            game.AddPlayer(gameCode, "Harold");
+            game.AddPlayer(gameCode, "Sarah");
+            game.AddPlayer(gameCode, "Linda");
+            var result = game.RemovePlayer("John") &&
+                game.RemovePlayer("Harold") &&
+                game.RemovePlayer("Sarah") &&
+                game.RemovePlayer("Linda");
+            Assert.IsTrue(result);
+        }
     }
 }

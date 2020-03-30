@@ -53,5 +53,23 @@ namespace UCLL_Quizine
 
             return true;
         }
+
+        public bool RemovePlayer(string playerName)
+        {
+            // Check if game has not started yet
+            if (Started)
+            {
+                throw new ApplicationException("The Game has already started.");
+            }
+
+            // Check if playerName exists
+            var existingPlayerWithName = Players.FirstOrDefault(x => x.Name == playerName);
+            if (existingPlayerWithName != null)
+            {
+                Players.Remove(existingPlayerWithName);
+            }
+
+            return true;
+        }
     }
 }
