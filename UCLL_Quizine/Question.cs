@@ -11,8 +11,8 @@ namespace UCLL_Quizine
         public Question(string questionText, List<Answer> answers, List<char> correctAnswerIds)
         {
             // Varify question has a correct answer.
-            var matchingAnswers = CorrectAnswerIds.Where(x => answers.Any(y => y.AnswerId == x)).ToList();
-            if (matchingAnswers == null)
+            var matchingAnswers = correctAnswerIds.Where(x => answers.Any(y => y.AnswerId == x)).ToList();
+            if (matchingAnswers.Count == 0)
             {
                 throw new ArgumentException("The given question has no correct answer.");
             }
