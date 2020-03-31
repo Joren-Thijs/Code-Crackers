@@ -18,7 +18,7 @@ namespace UCLL_Quizine
 
         public Question Question { get; set; }
         public Dictionary<Player, List<char>> Answers { get; private set; } = new Dictionary<Player, List<char>>();
-        public int RoundTime { get; private set; }
+        public int RoundTime { get; private set; } = 0;
         public int ElapsedRoundTime { get; private set; } = 0;
         public Timer Timer { get; private set; } = new Timer();
         public event EventHandler RoundOverEvent;
