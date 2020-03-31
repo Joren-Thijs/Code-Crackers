@@ -48,6 +48,12 @@ namespace UCLL_Quizine
 
         public bool AnswerQuestion(Player player, List<char> playerAnswers)
         {
+            // Check if round has started yet
+            if (!Timer.Enabled)
+            {
+                return false;
+            }
+
             Answers.Add(player, playerAnswers);
             return true;
         }

@@ -122,5 +122,16 @@ namespace UCLL_Quizine.Test
             gameRound.StartRound();
             Assert.IsTrue(eventRaised.WaitOne(timeoutMilliseconds));
         }
+
+        [Test]
+        public void GameRoundFilledQuestionCannotBeAnsweredBeforeRoundStartsTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var gameRound = new GameRound(question, roundTime);
+            var player = new Player("John");
+            var result = gameRound.AnswerQuestion(player, new List<char> { 'A' });
+            Assert.IsFalse(result);
+        }
     }
 }
