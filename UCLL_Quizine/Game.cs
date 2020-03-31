@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -10,16 +11,18 @@ namespace UCLL_Quizine
         {
             this.GameCode = gameCode;
             this.MaxNumberOfPlayers = maxNumberOfPlayers;
-            this.Players = new ObservableCollection<Player>();
-            this.Questions = new ObservableCollection<Question>();
-            this.Started = false;
         }
 
         public string GameCode { get; private set; }
         public int MaxNumberOfPlayers { get; private set; }
-        public ObservableCollection<Player> Players { get; private set; }
-        public ObservableCollection<Question> Questions { get; set; }
+        public ObservableCollection<Player> Players { get; private set; } = new ObservableCollection<Player>();
+        public Queue<Question> Questions { get; set; } = new Queue<Question>();
         public bool Started { get; private set; }
+
+        public void Start()
+        {
+            Started = true;
+        }
 
         public bool AddPlayer(string gameCode, string playerName)
         {
@@ -70,6 +73,11 @@ namespace UCLL_Quizine
             }
 
             return true;
+        }
+
+        public Question GetNextQuestion()
+        {
+            return Questions.Dequeue();
         }
     }
 }
