@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace UCLL_Quizine.Test
 {
@@ -29,14 +30,14 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
-        public void GameRoundRoundTimeIsZero()
+        public void GameRoundRoundTimeIsZeroTest()
         {
             var gameRound = new GameRound();
             Assert.AreEqual(0, gameRound.RoundTime);
         }
 
         [Test]
-        public void GameRoundElapsedRoundTimeIsZero()
+        public void GameRoundElapsedRoundTimeIsZeroTest()
         {
             var gameRound = new GameRound();
             Assert.AreEqual(0, gameRound.ElapsedRoundTime);
@@ -79,7 +80,7 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
-        public void GameRoundFilledElapsedRoundTimeIsZero()
+        public void GameRoundFilledElapsedRoundTimeIsZeroTest()
         {
             var question = new Question();
             var roundTime = 10;
@@ -88,7 +89,7 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
-        public void GameRoundFilledQuestionIsCorrect()
+        public void GameRoundFilledQuestionIsCorrectTest()
         {
             var question = new Question();
             var roundTime = 10;
@@ -97,12 +98,29 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
-        public void GameRoundFilledRoundTimeIsCorrect()
+        public void GameRoundFilledRoundTimeIsCorrectTest()
         {
             var question = new Question();
             var roundTime = 10;
             var gameRound = new GameRound(question, roundTime);
             Assert.AreEqual(roundTime, gameRound.RoundTime);
+        }
+
+        [Test]
+        public void GameRoundFilledRoundOverEventIsFiredTest()
+        {
+            var timeoutMilliseconds = 1500;
+            var question = new Question();
+            var roundTime = 1;
+            var gameRound = new GameRound(question, roundTime);
+            ManualResetEvent eventRaised = new ManualResetEvent(false);
+            gameRound.RoundOverEvent +=
+                (s, e) => 
+                {
+                    eventRaised.Set();
+                };
+            gameRound.StartRound();
+            Assert.IsTrue(eventRaised.WaitOne(timeoutMilliseconds));
         }
     }
 }
