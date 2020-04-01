@@ -12,9 +12,20 @@ namespace UCLL_Quizine
 
         public GameRound(Question question, int roundTime, List<Player> players)
         {
-            Question = question;
+            Question = question ??
+                throw new ArgumentNullException(nameof(question));
             RoundTime = roundTime;
+
+            if (players == null)
+            {
+                throw new ArgumentNullException(nameof(players));
+            }
+            if (players.Count < 2)
+            {
+                throw new ArgumentException("The minimum amount of players to play is two.");
+            }
             Players = players;
+
         }
 
         public Question Question { get; set; }

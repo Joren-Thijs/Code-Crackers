@@ -62,6 +62,48 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void AssertCreateGameRoundFilledQuestionCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(CreateGameRoundFilledQuestionCannotBeNullTest);
+        }
+
+        public void CreateGameRoundFilledQuestionCannotBeNullTest()
+        {
+            Question question = null;
+            var roundTime = 10;
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+        }
+
+        [Test]
+        public void AssertCreateGameRoundFilledPlayersCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(CreateGameRoundFilledQuestionPlayersCannotBeNullTest);
+        }
+
+        public void CreateGameRoundFilledQuestionPlayersCannotBeNullTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            List<Player> players = null;
+            var gameRound = new GameRound(question, roundTime, players);
+        }
+
+        [Test]
+        public void AssertCreateGameRoundFilledPlayersCannotBeLessThenTwoTest()
+        {
+            Assert.Throws<ArgumentException>(CreateGameRoundFilledQuestionPlayersCannotBeLessThenTwoTest);
+        }
+
+        public void CreateGameRoundFilledQuestionPlayersCannotBeLessThenTwoTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var players = new List<Player>() { new Player("John") };
+            var gameRound = new GameRound(question, roundTime, players);
+        }
+
+        [Test]
         public void GameRoundFilledQuestionIsNotNullTest()
         {
             var question = new Question();
