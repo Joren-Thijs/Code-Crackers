@@ -56,6 +56,66 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void AssertCreateQuestionFilledQuestionTextCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(CreateQuestionFilledQuestionTextCannotBeNullTest);
+        }
+
+        public void CreateQuestionFilledQuestionTextCannotBeNullTest()
+        {
+            string questionText = null;
+            var answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+                new Answer('B', "Answer 2"),
+                new Answer('C', "Answer 3"),
+                new Answer('D', "Answer 4")
+            };
+            var correctAnswerIds = new List<char>()
+            {
+                'A'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+        }
+
+        [Test]
+        public void AssertCreateQuestionFilledAnswersCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(CreateQuestionFilledAnswersCannotBeNullTest);
+        }
+
+        public void CreateQuestionFilledAnswersCannotBeNullTest()
+        {
+            var questionText = "Question";
+            List<Answer> answers = null;
+            var correctAnswerIds = new List<char>()
+            {
+                'A'
+            };
+            var question = new Question(questionText, answers, correctAnswerIds);
+        }
+
+        [Test]
+        public void AssertCreateQuestionFilledCorrectAnswerIdsCannotBeNullTest()
+        {
+            Assert.Throws<ArgumentNullException>(CreateQuestionFilledCorrectAnswerIdsCannotBeNullTest);
+        }
+
+        public void CreateQuestionFilledCorrectAnswerIdsCannotBeNullTest()
+        {
+            var questionText = "Question";
+            List<Answer> answers = new List<Answer>()
+            {
+                new Answer('A', "Answer 1"),
+                new Answer('B', "Answer 2"),
+                new Answer('C', "Answer 3"),
+                new Answer('D', "Answer 4")
+            };
+            List<char> correctAnswerIds = null;
+            var question = new Question(questionText, answers, correctAnswerIds);
+        }
+
+        [Test]
         public void QuestionFilledTextIsNotNullTest()
         {
             var questionText = "Question";

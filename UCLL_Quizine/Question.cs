@@ -10,6 +10,21 @@ namespace UCLL_Quizine
 
         public Question(string questionText, List<Answer> answers, List<char> correctAnswerIds)
         {
+            if (String.IsNullOrWhiteSpace(questionText))
+            {
+                throw new ArgumentNullException("Question text cannot be empty.");
+            }
+
+            if (answers == null)
+            {
+                throw new ArgumentNullException(nameof(answers));
+            }
+
+            if (correctAnswerIds == null)
+            {
+                throw new ArgumentNullException(nameof(correctAnswerIds));
+            }
+
             // Varify question has a correct answer.
             var matchingAnswers = correctAnswerIds.Where(x => answers.Any(y => y.AnswerId == x)).ToList();
             if (matchingAnswers.Count == 0)
