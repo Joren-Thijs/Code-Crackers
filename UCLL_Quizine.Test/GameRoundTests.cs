@@ -296,6 +296,38 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void GameRoundFilledQuestionCannotBeAnsweredTriceTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+            gameRound.StartRound();
+
+            gameRound.AnswerQuestion(player, new List<char> { 'A' });
+            var result = gameRound.AnswerQuestion(player, new List<char> { 'A' }) && gameRound.AnswerQuestion(player, new List<char> { 'B' });
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void GameRoundFilledQuestionCannotBeAnsweredFoursTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+            gameRound.StartRound();
+
+            gameRound.AnswerQuestion(player, new List<char> { 'A' });
+            var result = gameRound.AnswerQuestion(player, new List<char> { 'B' }) &&
+                gameRound.AnswerQuestion(player, new List<char> { 'C' }) &&
+                gameRound.AnswerQuestion(player, new List<char> { 'D' });
+            Assert.IsFalse(result);
+        }
+
+        [Test]
         public void AssertGameRoundFilledQuestionCannotBeAnsweredByUnknownPlayerTest()
         {
             Assert.Throws<ArgumentException>(GameRoundFilledQuestionCannotBeAnsweredByUnknownPlayerTest);
