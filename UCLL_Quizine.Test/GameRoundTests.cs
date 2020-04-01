@@ -252,5 +252,23 @@ namespace UCLL_Quizine.Test
             var result = gameRound.AnswerQuestion(player, new List<char> { 'A' });
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void AssertGameRoundFilledQuestionCannotBeAnsweredByUnknownPlayerTest()
+        {
+            Assert.Throws<ArgumentException>(GameRoundFilledQuestionCannotBeAnsweredByUnknownPlayerTest);
+        }
+
+        public void GameRoundFilledQuestionCannotBeAnsweredByUnknownPlayerTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+            gameRound.StartRound();
+
+            gameRound.AnswerQuestion(new Player("Julia"), new List<char> { 'A' });
+        }
     }
 }
