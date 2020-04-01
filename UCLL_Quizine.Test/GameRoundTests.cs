@@ -164,6 +164,24 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void GameRoundFilledRoundStartedEventIsFiredTest()
+        {
+            var timeoutMilliseconds = 500;
+            var question = new Question();
+            var roundTime = 1;
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+            ManualResetEvent eventRaised = new ManualResetEvent(false);
+            gameRound.RoundStartedEvent +=
+                (s, e) =>
+                {
+                    eventRaised.Set();
+                };
+            gameRound.StartRound();
+            Assert.IsTrue(eventRaised.WaitOne(timeoutMilliseconds));
+        }
+
+        [Test]
         public void GameRoundFilledRoundOverEventIsFiredTest()
         {
             var timeoutMilliseconds = 1500;

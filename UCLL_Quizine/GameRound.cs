@@ -34,6 +34,7 @@ namespace UCLL_Quizine
         public int RoundTime { get; private set; } = 0;
         public int ElapsedRoundTime { get; private set; } = 0;
         public Timer Timer { get; private set; } = new Timer();
+        public event EventHandler RoundStartedEvent;
         public event EventHandler RoundOverEvent;
 
         public void StartRound()
@@ -48,6 +49,8 @@ namespace UCLL_Quizine
             Timer.Interval = 1000;
             Timer.Elapsed += TimerElapsed;
             Timer.Enabled = true;
+
+            RoundStartedEvent?.Invoke(this, new EventArgs());
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
@@ -94,6 +97,7 @@ namespace UCLL_Quizine
         {
             // Disable Timer
             Timer.Enabled = false;
+            Timer.Elapsed -= TimerElapsed;
 
             CheckAnswers();
 
