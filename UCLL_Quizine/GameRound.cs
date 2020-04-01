@@ -10,13 +10,15 @@ namespace UCLL_Quizine
     {
         public GameRound() {}
 
-        public GameRound(Question question, int roundTime)
+        public GameRound(Question question, int roundTime, List<Player> players)
         {
             Question = question;
             RoundTime = roundTime;
+            Players = players;
         }
 
         public Question Question { get; set; }
+        public List<Player> Players { get; private set; } = new List<Player>();
         public Dictionary<Player, List<char>> Answers { get; private set; } = new Dictionary<Player, List<char>>();
         public int RoundTime { get; private set; } = 0;
         public int ElapsedRoundTime { get; private set; } = 0;
@@ -48,18 +50,40 @@ namespace UCLL_Quizine
 
         public bool AnswerQuestion(Player player, List<char> playerAnswers)
         {
+            // Check if the player is part of this game
+            if (!Players.Contains(player))
+            {
+                throw new ArgumentException("The player is not part of this game.");
+            }
+
             // Check if round has started yet
             if (!Timer.Enabled)
             {
                 return false;
             }
 
+            // Check if player has already answered
+            if (Answers.ContainsKey(player))
+            {
+                return false;
+            }
+
             Answers.Add(player, playerAnswers);
+
+            // Check if all players have answered
+            if (Answers.Count == Players.Count)
+            {
+                EndRound();
+            }
+
             return true;
         }
 
         private void EndRound()
         {
+            // Disable Timer
+            Timer.Enabled = false;
+
             CheckAnswers();
 
             RoundOverEvent?.Invoke(this, new EventArgs());

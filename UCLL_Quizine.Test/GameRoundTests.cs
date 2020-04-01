@@ -17,6 +17,13 @@ namespace UCLL_Quizine.Test
         }
 
         [Test]
+        public void GameRoundPlayersIsNotNullTest()
+        {
+            var gameRound = new GameRound();
+            Assert.IsNotNull(gameRound.Players);
+        }
+
+        [Test]
         public void GameRoundAnswersIsNotNullTest()
         {
             var gameRound = new GameRound();
@@ -49,7 +56,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.IsNotNull(gameRound);
         }
 
@@ -58,7 +66,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.IsNotNull(gameRound.Question);
         }
 
@@ -67,7 +76,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.IsNotNull(gameRound.Answers);
         }
 
@@ -76,7 +86,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.IsNotNull(gameRound.Timer);
         }
 
@@ -85,7 +96,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.AreEqual(0, gameRound.ElapsedRoundTime);
         }
 
@@ -94,7 +106,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.AreEqual(question, gameRound.Question);
         }
 
@@ -103,7 +116,8 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             Assert.AreEqual(roundTime, gameRound.RoundTime);
         }
 
@@ -113,7 +127,8 @@ namespace UCLL_Quizine.Test
             var timeoutMilliseconds = 1500;
             var question = new Question();
             var roundTime = 1;
-            var gameRound = new GameRound(question, roundTime);
+            var players = new List<Player>() { new Player("John"), new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             ManualResetEvent eventRaised = new ManualResetEvent(false);
             gameRound.RoundOverEvent +=
                 (s, e) => 
@@ -129,8 +144,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var result = gameRound.AnswerQuestion(player, new List<char> { 'A' });
             Assert.IsFalse(result);
         }
@@ -140,8 +156,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var answers = new List<char> { 'A' };
             gameRound.StartRound();
 
@@ -154,8 +171,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var answers = new List<char> { 'A' };
             gameRound.StartRound();
 
@@ -171,8 +189,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var answers = new List<char> { 'A', 'B' };
             gameRound.StartRound();
 
@@ -188,8 +207,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var answers = new List<char> { 'A', 'B', 'C' };
             gameRound.StartRound();
 
@@ -205,8 +225,9 @@ namespace UCLL_Quizine.Test
         {
             var question = new Question();
             var roundTime = 10;
-            var gameRound = new GameRound(question, roundTime);
             var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
             var answers = new List<char> { 'A', 'B', 'C', 'D' };
             gameRound.StartRound();
 
@@ -215,6 +236,21 @@ namespace UCLL_Quizine.Test
             var gameRoundAnswers = gameRound.Answers.GetValueOrDefault(player);
             var result = gameRoundAnswers.All(answers.Contains) && gameRoundAnswers.Count == answers.Count;
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void GameRoundFilledQuestionCannotBeAnsweredTwiceTest()
+        {
+            var question = new Question();
+            var roundTime = 10;
+            var player = new Player("John");
+            var players = new List<Player>() { player, new Player("Harold") };
+            var gameRound = new GameRound(question, roundTime, players);
+            gameRound.StartRound();
+
+            gameRound.AnswerQuestion(player, new List<char> { 'A' });
+            var result = gameRound.AnswerQuestion(player, new List<char> { 'A' });
+            Assert.IsFalse(result);
         }
     }
 }
