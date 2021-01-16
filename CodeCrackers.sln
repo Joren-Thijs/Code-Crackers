@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCrackers.API", "CodeCrackers.API\CodeCrackers.API.csproj", "{E7FFC318-3A56-40A7-9C59-CB687C31FE4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7FFC318-3A56-40A7-9C59-CB687C31FE4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FFC318-3A56-40A7-9C59-CB687C31FE4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FFC318-3A56-40A7-9C59-CB687C31FE4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FFC318-3A56-40A7-9C59-CB687C31FE4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0806345F-E257-4D96-9429-9E48FF504D5B}
+	EndGlobalSection
+EndGlobal
