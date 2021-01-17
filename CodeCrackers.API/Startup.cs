@@ -1,4 +1,5 @@
 using CodeCrackers.API.Hubs;
+using CodeCrackers.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,7 +34,9 @@ namespace CodeCrackers.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CodeCrackers.API", Version = "v1" });
             });
-            services.AddSignalR
+            services.AddSignalR();
+
+            services.AddSingleton<GameService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

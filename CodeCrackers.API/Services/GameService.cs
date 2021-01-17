@@ -11,17 +11,28 @@ namespace CodeCrackers.API.Services
     public class GameService
     {
         private readonly List<Game> _games = new();
-        public string CreateGame()
+        private readonly object _gamesLock = new();
+
+        public string CreateGame(string playerName)
         {
             var game = new Game();
             game.GameId = IdGenerator.GenerateRandomString(4);
-            _games.Add(game);
+            game.Players.Add(new Player { Name = playerName });
+            lock (_gamesLock)
+            {
+                _games.Add(game);
+            }
+            
             return game.GameId;
         }
 
         public void AddPlayer(string gameId, string playerName)
         {
-            var game = _games.FirstOrDefault(g => g.GameId == gameId);
+            Game game;
+            lock (_gamesLock)
+            {
+                game = _games.FirstOrDefault(g => g.GameId == gameId);
+            }
 
             if (game == null)
             {
@@ -33,12 +44,19 @@ namespace CodeCrackers.API.Services
                 throw new PlayerAlreadyExistsException($"Player with name {playerName} already exists");
             }
 
-            game.Players.Add(new Player { Name = playerName });
+            lock (_gamesLock)
+            {
+                game.Players.Add(new Player { Name = playerName });
+            }
         }
 
         public void RemovePlayer(string gameId, string playerName)
         {
-            var game = _games.FirstOrDefault(g => g.GameId == gameId);
+            Game game;
+            lock (_gamesLock)
+            {
+                game = _games.FirstOrDefault(g => g.GameId == gameId);
+            }
 
             if (game == null)
             {
@@ -47,7 +65,10 @@ namespace CodeCrackers.API.Services
 
             var player = game.Players.FirstOrDefault(p => p.Name.ToLower() == playerName.ToLower());
 
-            game.Players.Remove(player);
+            lock (_gamesLock)
+            {
+                game.Players.Remove(player);
+            }
         }
     }
 }
